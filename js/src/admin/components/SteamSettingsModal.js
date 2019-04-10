@@ -2,7 +2,7 @@ import SettingsModal from 'flarum/components/SettingsModal';
 
 export default class SteamSettingsModal extends SettingsModal {
     className() {
-        return 'SteamSettingsModal Modal--small';
+        return 'AuthSteamSettingsModal Modal--small';
     }
 
     title() {
