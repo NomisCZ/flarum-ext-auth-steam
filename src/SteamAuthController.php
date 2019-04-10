@@ -15,6 +15,15 @@ use GuzzleHttp\Client;
 
 class SteamAuthController implements RequestHandlerInterface
 {
+    /**
+     * Steam OpenID login url
+     */
+    const LOGIN_URL = 'https://steamcommunity.com/openid/login';
+    /**
+     * Steam OpenID API url
+     */
+    const API_URL = 'https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002';
+    
     protected $response;
     protected $settings;
 
