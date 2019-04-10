@@ -9,6 +9,9 @@ use Flarum\Settings\SettingsRepositoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface;
+use Zend\Diactoros\Response\RedirectResponse;
+use Zend\Diactoros\Uri;
+use GuzzleHttp\Client;
 
 class SteamAuthController implements RequestHandlerInterface
 {
