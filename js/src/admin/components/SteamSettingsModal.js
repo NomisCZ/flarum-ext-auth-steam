@@ -12,7 +12,7 @@ export default class SteamSettingsModal extends SettingsModal {
     form() {
         return [
             <div className="Form-group">
-                <label>{app.translator.trans('flarum-auth-github.admin.steam_settings.api_key_label')}</label>
+                <label>{app.translator.trans('flarum-ext-auth-steam.admin.steam_settings.api_key_label')}</label>
                 <input className="FormControl" bidi={this.setting('flarum-ext-auth-steam.api_key')}/>
             </div>,
         ];
