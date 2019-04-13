@@ -8,7 +8,7 @@ app.initializers.add('flarum-ext-auth-steam', () => {
         items.add('steam',
             <LogInButton
                 className="Button LogInButton--steam"
-                icon="fab fa-steam"
+                icon="fab fa-steam-symbol"
                 path="/auth/steam">
                 {app.translator.trans('flarum-ext-auth-steam.forum.log_in.with_steam_button')}
             </LogInButton>

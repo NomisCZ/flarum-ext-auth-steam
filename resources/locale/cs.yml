@@ -1,0 +1,8 @@
+flarum-ext-auth-steam:
+  forum:
+    log_in:
+      with_steam_button: Přihlásit se přes Steam
+  admin:
+    steam_settings:
+      title: Nastavení Steam přihlášení
+      api_key_label: API klíč

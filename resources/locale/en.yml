@@ -4,5 +4,5 @@ flarum-ext-auth-steam:
       with_steam_button: Log in with Steam
   admin:
     steam_settings:
-      title: Steam Settings
+      title: Steam Auth Settings
       api_key_label: API Key
