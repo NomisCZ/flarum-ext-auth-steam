@@ -2,9 +2,9 @@
 
 namespace NomisCZ\SteamAuth;
 
+use NomisCZ\SteamAuth\Flarum\Forum\Auth\NResponseFactory;
 use Exception;
 use Flarum\Forum\Auth\Registration;
-use Flarum\Forum\Auth\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -14,7 +14,7 @@ class SteamAuthController implements RequestHandlerInterface
     protected $response;
     protected $steam;
 
-    public function __construct(ResponseFactory $response, SteamAuth $steam)
+    public function __construct(NResponseFactory $response, SteamAuth $steam)
     {
         $this->response = $response;
         $this->steam = $steam;
