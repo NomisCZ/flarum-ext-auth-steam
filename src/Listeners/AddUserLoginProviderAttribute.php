@@ -34,7 +34,7 @@ class AddUserLoginProviderAttribute
             $userLoginProviders = $event->model->loginProviders();
             $userLoginProvidersCount = $userLoginProviders->count();
             $userHasSteamProvider = $userLoginProviders->where('provider', 'steam')->exists();
-            
+
             $event->attributes['SteamAuth'] = [
                 'isLinked' => $userHasSteamProvider,
                 'providersCount' => $userLoginProvidersCount,

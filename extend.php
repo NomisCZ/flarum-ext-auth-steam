@@ -14,6 +14,7 @@ namespace NomisCZ\SteamAuth;
 use NomisCZ\SteamAuth\Http\Controllers\SteamAuthController;
 use NomisCZ\SteamAuth\Api\Controllers\SteamLinkController;
 use NomisCZ\SteamAuth\Api\Controllers\SteamUnlinkController;
+use NomisCZ\SteamAuth\Listeners\AddUserLoginProviderAttribute;
 use Flarum\Extend;
 use Illuminate\Contracts\Events\Dispatcher;
 
@@ -31,6 +32,6 @@ return [
         ->get('/auth/steam/link', 'auth.steam.api.link', SteamLinkController::class)
         ->post('/auth/steam/unlink', 'auth.steam.api.unlink', SteamUnlinkController::class),
     function (Dispatcher $events) {
-        $events->subscribe(Listeners\AddUserLoginProviderAttribute::class);
+        $events->subscribe(AddUserLoginProviderAttribute::class);
     },
 ];
