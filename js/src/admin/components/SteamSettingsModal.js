@@ -1,5 +1,6 @@
 import SettingsModal from 'flarum/components/SettingsModal';
 
+// TODO change trans key ...
 export default class SteamSettingsModal extends SettingsModal {
     className() {
         return 'AuthSteamSettingsModal Modal--small';

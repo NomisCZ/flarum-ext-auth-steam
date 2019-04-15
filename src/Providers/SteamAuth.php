@@ -1,5 +1,15 @@
 <?php
-namespace NomisCZ\SteamAuth;
+
+/*
+ * This file is part of nomiscz/flarum-ext-auth-steam.
+ *
+ * Copyright (c) 2019 NomisCZ.
+ *
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
+ */
+
+namespace NomisCZ\SteamAuth\Providers;
 
 use Exception;
 use Illuminate\Support\Fluent;
@@ -215,13 +225,12 @@ class SteamAuth implements SteamAuthInterface
      */
     private function buildUrl() : string
     {
-        $redirectUri = $this->request->getAttribute('originalUri', $this->request->getUri())->withQuery('');
-
+        $redirectUri = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $params = http_build_query([
             'openid.ns'         => self::OPENID_NS,
             'openid.mode'       => 'checkid_setup',
             'openid.return_to'  => (string) $redirectUri,
-            'openid.realm'      => (string) $redirectUri->withPath(''),
+            'openid.realm'      => (string) $redirectUri,
             'openid.identity'   => 'http://specs.openid.net/auth/2.0/identifier_select',
             'openid.claimed_id' => 'http://specs.openid.net/auth/2.0/identifier_select',
         ]);

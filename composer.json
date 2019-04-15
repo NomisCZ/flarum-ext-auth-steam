@@ -24,7 +24,7 @@
   },
   "extra": {
     "flarum-extension": {
-      "title": "Steam Login",
+      "title": "NomisCZ Steam Login",
       "icon": {
         "name": "fab fa-steam",
         "backgroundColor": "#171a21",

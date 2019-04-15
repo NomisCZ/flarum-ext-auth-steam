@@ -9,8 +9,13 @@
  * file that was distributed with this source code.
  */
 
+namespace NomisCZ\SteamAuth;
+
+use NomisCZ\SteamAuth\Http\Controllers\SteamAuthController;
+use NomisCZ\SteamAuth\Api\Controllers\SteamLinkController;
+use NomisCZ\SteamAuth\Api\Controllers\SteamUnlinkController;
 use Flarum\Extend;
-use NomisCZ\SteamAuth\SteamAuthController;
+use Illuminate\Contracts\Events\Dispatcher;
 
 return [
     (new Extend\Frontend('forum'))
@@ -22,4 +27,10 @@ return [
     new Extend\Locales(__DIR__ . '/resources/locale'),
     (new Extend\Routes('forum'))
         ->get('/auth/steam', 'auth.steam', SteamAuthController::class),
+    (new Extend\Routes('api'))
+        ->get('/auth/steam/link', 'auth.steam.api.link', SteamLinkController::class)
+        ->post('/auth/steam/unlink', 'auth.steam.api.unlink', SteamUnlinkController::class),
+    function (Dispatcher $events) {
+        $events->subscribe(Listeners\AddUserLoginProviderAttribute::class);
+    },
 ];
