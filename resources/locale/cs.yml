@@ -21,6 +21,7 @@ nomiscz-auth-steam:
         buttons:
           confirm: Ano, odebrat účet
           cancel: Ne!
+  admin:
     settings:
       title: Nastavení Steam přihlášení
       api_key_label: API klíč

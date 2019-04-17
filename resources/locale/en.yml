@@ -21,6 +21,7 @@ nomiscz-auth-steam:
         buttons:
           confirm: Yes, unlink account
           cancel: No!
+  admin:
     settings:
       title: Steam Auth Settings
       api_key_label: API Key
