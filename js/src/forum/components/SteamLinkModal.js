@@ -1,14 +1,13 @@
 import Modal from 'flarum/components/Modal';
 import Button from 'flarum/components/Button';
 
-// TODO change trans key ...
 export default class SteamLinkModal extends Modal {
     className() {
         return 'AuthSteamLinkModal Modal--small';
     }
 
     title() {
-        return 'Link Steam Account'; // TODO app.translator.trans(...)
+        return app.translator.trans('nomiscz-auth-steam.forum.modals.link.title');
     }
 
     content() {
@@ -20,7 +19,7 @@ export default class SteamLinkModal extends Modal {
                             className: 'Button LogInButton--steam',
                             icon: 'fab fa-steam-symbol',
                             loading: this.loading,
-                            children: app.translator.trans('flarum-ext-auth-steam.forum.log_in.with_steam_button'), // TODO app.translator.trans(...)
+                            children: app.translator.trans('nomiscz-auth-steam.forum.buttons.login'),
                             onclick: () => this.showSteamLogin()
                         })}
                     </div>

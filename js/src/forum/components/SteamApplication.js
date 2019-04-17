@@ -14,7 +14,7 @@ export default class SteamApplication extends ForumApplication
                 app.alerts.show(
                     alert = new Alert({
                         type: 'error',
-                        children: 'Steam account is already linked!' // TODO app.translator.trans(...)
+                        children: app.translator.trans('nomiscz-auth-steam.forum.alerts.already_linked'),
                     })
                 );
                 break;
@@ -22,7 +22,7 @@ export default class SteamApplication extends ForumApplication
                 app.alerts.show(
                     alert = new Alert({
                         type: 'error',
-                        children: 'Steam account is already linked to another user!' // TODO app.translator.trans(...)
+                        children: app.translator.trans('nomiscz-auth-steam.forum.alerts.already_used'),
                     })
                 );
                 break;
@@ -32,7 +32,7 @@ export default class SteamApplication extends ForumApplication
                 app.alerts.show(
                     alert = new Alert({
                         type: 'success',
-                        children: 'Steam account link successful.' // TODO app.translator.trans(...)
+                        children: app.translator.trans('nomiscz-auth-steam.forum.alerts.link_success'),
                     })
                 );
                 break;
@@ -40,7 +40,7 @@ export default class SteamApplication extends ForumApplication
                 app.alerts.show(
                     alert = new Alert({
                         type: 'error',
-                        children: 'Something went wrong, please try again later!' // TODO app.translator.trans(...)
+                        children: app.translator.trans('nomiscz-auth-steam.forum.alerts.error'),
                     })
                 );
                 break;

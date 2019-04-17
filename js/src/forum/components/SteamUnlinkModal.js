@@ -2,14 +2,13 @@ import Modal from 'flarum/components/Modal';
 import Button from 'flarum/components/Button';
 import Alert from 'flarum/components/Alert';
 
-// TODO change trans key ...
 export default class SteamUnlinkModal extends Modal {
     className() {
         return 'AuthSteamUnlinkModal Modal--small';
     }
 
     title() {
-        return 'Unlink Steam Account'; // TODO app.translator.trans(...)
+        return app.translator.trans('nomiscz-auth-steam.forum.modals.unlink.title');
     }
 
     content() {
@@ -23,16 +22,15 @@ export default class SteamUnlinkModal extends Modal {
             },
         } = app.session.user;
 
-        // TODO app.translator.trans(...)
         return (
             <div className="Modal-body">
                 <div className="Form Form--centered">
                     <div className="Form-group" id="submit-button-group">
-                        <h3>Are you sure, you want unlink your Steam account?</h3>
+                        <h3>{app.translator.trans('nomiscz-auth-steam.forum.modals.unlink.info.confirm')}</h3>
                         {(providersCount <= 1)
                             ?
                             <p className="SteamText--danger"><i className="fas fa-exclamation-triangle fa-fw" />
-                                <b>You don't have any others login providers! You'll probably have to reset your password.</b>
+                                <b>{app.translator.trans('nomiscz-auth-steam.forum.modals.unlink.info.no_providers')}</b>
                             </p>
                             : ''
                         }
@@ -43,11 +41,11 @@ export default class SteamUnlinkModal extends Modal {
                                 className: 'Button SteamButton--danger',
                                 icon: 'fas fa-exclamation-triangle',
                                 loading: this.loading,
-                                children: 'Yes, unlink account', // TODO app.translator.trans(...)
+                                children: app.translator.trans('nomiscz-auth-steam.forum.modals.unlink.buttons.confirm'),
                             })}
                             {Button.component({
                                 className: 'Button Button--primary',
-                                children: 'No!', // TODO app.translator.trans(...)
+                                children: app.translator.trans('nomiscz-auth-steam.forum.modals.unlink.buttons.cancel'),
                                 disabled: this.loading,
                                 onclick: () => this.hide()
                             })}
@@ -73,7 +71,7 @@ export default class SteamUnlinkModal extends Modal {
             app.alerts.show(
                 alert = new Alert({
                     type: 'success',
-                    children: 'Steam account unlink successful.' // TODO app.translator.trans(...)
+                    children: app.translator.trans('nomiscz-auth-steam.forum.alerts.unlink_success'),
                 })
             );
             this.hide();

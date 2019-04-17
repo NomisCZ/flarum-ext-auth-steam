@@ -10,7 +10,7 @@ import LogInButtons from 'flarum/components/LogInButtons';
 import LogInButton from 'flarum/components/LogInButton';
 import Button from 'flarum/components/Button';
 
-app.initializers.add('flarum-ext-auth-steam', () => {
+app.initializers.add('nomiscz-auth-steam', () => {
 
     extend(SettingsPage.prototype, 'accountItems', (items) => {
         const {
@@ -27,7 +27,7 @@ app.initializers.add('flarum-ext-auth-steam', () => {
             Button.component({
                 className: `Button SteamButton--${isLinked ? 'danger' : 'success'}`,
                 icon: 'fab fa-steam-symbol',
-                children: `${isLinked ? 'Unlink' : 'Link'} Steam Account`,  // TODO app.translator.trans(...)
+                children: app.translator.trans(`nomiscz-auth-steam.forum.buttons.${isLinked ? 'unlink' : 'link'}`),
                 onclick: () => app.modal.show(isLinked ? new SteamUnlinkModal() : new SteamLinkModal())
             })
         );
@@ -39,7 +39,7 @@ app.initializers.add('flarum-ext-auth-steam', () => {
                 className="Button LogInButton--steam"
                 icon="fab fa-steam-symbol"
                 path="/auth/steam">
-                {app.translator.trans('flarum-ext-auth-steam.forum.log_in.with_steam_button')}
+                {app.translator.trans('nomiscz-auth-steam.forum.buttons.login')}
             </LogInButton>
         );
     });
