@@ -182,19 +182,19 @@ class SteamAuth implements SteamAuthInterface
 
     /**
      * Get param list for OpenID validation
-     * @return string
+     * @return array
      */
     private function getParams()
     {
         $queryParams = $this->request->getQueryParams();
 
-        $params = http_build_query([
+        $params = [
             'openid.assoc_handle' => array_get($queryParams,self::OPENID_ASSOC_HANDLE),
             'openid.signed'       => array_get($queryParams,self::OPENID_SIGNED),
             'openid.sig'          => array_get($queryParams,self::OPENID_SIG),
             'openid.ns'           => self::OPENID_NS,
             'openid.mode'         => 'check_authentication',
-        ]);
+        ];
 
         $signedParams = explode(',', array_get($queryParams,self::OPENID_SIGNED));
 

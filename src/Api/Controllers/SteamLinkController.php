@@ -75,7 +75,7 @@ class SteamLinkController implements RequestHandlerInterface
     private function checkLoginProvider($identifier) : bool
     {
         return $this->loginProvider->where([
-            ['provider', '=', 'steam'],
+            ['provider', 'steam'],
             ['identifier', $identifier]
         ])->exists();
     }
