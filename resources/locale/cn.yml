@@ -24,4 +24,4 @@ nomiscz-auth-steam:
   admin:
     settings:
       title: steam登录设置
-      api_key_label: 密匙
+      api_key_label: steam密匙
