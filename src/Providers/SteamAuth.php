@@ -29,7 +29,7 @@ class SteamAuth implements SteamAuthInterface
     /**
      * @var string
      */
-    const OPENID_URL = 'https://steamcommunity.com/openid/login';
+    const OPENID_URL = 'https://steampowered.com/openid/login';
     /**
      * @var string
      */
@@ -254,7 +254,7 @@ class SteamAuth implements SteamAuthInterface
     private function parseSteamID() : void
     {
         $queryParams = $this->request->getQueryParams();
-        preg_match('#^https?://steamcommunity.com/openid/id/([0-9]{17,25})#', array_get($queryParams,'openid_claimed_id'), $matches);
+        preg_match('#^https?://steampowered.com/openid/id/([0-9]{17,25})#', array_get($queryParams,'openid_claimed_id'), $matches);
         $this->steamId = is_numeric($matches[1]) ? $matches[1] : 0;
     }
 
