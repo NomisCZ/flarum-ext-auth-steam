@@ -213,7 +213,7 @@ class SteamAuth implements SteamAuthInterface
 
         foreach ($signedParams as $item) {
             $value = array_get($queryParams,'openid_'.str_replace('.', '_', $item));
-            $params['openid.'.$item] = get_magic_quotes_gpc() ? stripslashes($value) : $value;
+            $params['openid.'.$item] = $value;
         }
 
         return $params;
