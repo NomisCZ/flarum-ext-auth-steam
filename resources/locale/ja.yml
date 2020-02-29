@@ -3,12 +3,12 @@ nomiscz-auth-steam:
     buttons:
       login: Steam でログインする
       link: Steam アカウントのリンク
-      unlink: Steam アカウントのリンク 解除
+      unlink: Steam アカウントのリンク解除
     alerts:
       already_linked: Steam アカウントは既にリンクされています！
       already_used: Steam アカウントはすでに別のユーザーにリンクされています！
-      link_success: Steam アカウントのリンクが成功しました。
-      unlink_success: Steam アカウントのリンク解除に成功しました。
+      link_success: Steam アカウントのリンクが成功しました！
+      unlink_success: Steam アカウントのリンク解除に成功しました！
       error: 問題が発生しました。しばらくしてからもう一度お試しください！
     modals:
       link:
