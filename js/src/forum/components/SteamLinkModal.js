@@ -15,13 +15,10 @@ export default class SteamLinkModal extends Modal {
             <div className="Modal-body">
                 <div className="Form Form--centered">
                     <div className="Form-group">
-                        {Button.component({
-                            className: 'Button LogInButton--steam',
-                            icon: 'fab fa-steam-symbol',
-                            loading: this.loading,
-                            children: app.translator.trans('nomiscz-auth-steam.forum.buttons.login'),
-                            onclick: () => this.showSteamLogin()
-                        })}
+                        <Button className={'Button LogInButton--steam'} icon={'fab fa-steam-symbol'} loading={this.loading} disabled={this.loading}
+                                path={`/auth/${name}`} onclick={() => this.showSteamLogin()}>
+                            {app.translator.trans('nomiscz-auth-steam.forum.buttons.login')}
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -40,5 +37,7 @@ export default class SteamLinkModal extends Modal {
             `top=${$window.height() / 2 - height / 2},` +
             `left=${$window.width() / 2 - width / 2},` +
             'status=no,scrollbars=no,resizable=no');
+
+        this.loading = true;
     }
 }

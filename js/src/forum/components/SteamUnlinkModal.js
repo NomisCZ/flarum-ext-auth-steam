@@ -1,6 +1,5 @@
 import Modal from 'flarum/components/Modal';
 import Button from 'flarum/components/Button';
-import Alert from 'flarum/components/Alert';
 
 export default class SteamUnlinkModal extends Modal {
     className() {
@@ -36,19 +35,14 @@ export default class SteamUnlinkModal extends Modal {
                         }
                         <br/>
                         <div className="ButtonGroup">
-                            {Button.component({
-                                type: 'submit',
-                                className: 'Button SteamButton--danger',
-                                icon: 'fas fa-exclamation-triangle',
-                                loading: this.loading,
-                                children: app.translator.trans('nomiscz-auth-steam.forum.modals.unlink.buttons.confirm'),
-                            })}
-                            {Button.component({
-                                className: 'Button Button--primary',
-                                children: app.translator.trans('nomiscz-auth-steam.forum.modals.unlink.buttons.cancel'),
-                                disabled: this.loading,
-                                onclick: () => this.hide()
-                            })}
+                            <Button type={'submit'} className={'Button SteamButton--danger'} icon={'fas fa-exclamation-triangle'}
+                                    loading={this.loading}>
+                                {app.translator.trans('nomiscz-auth-steam.forum.modals.unlink.buttons.confirm')}
+                            </Button>
+                            <Button className={'Button Button--primary'} icon={'fas fa-exclamation-triangle'}
+                                    onclick={() => this.hide()} disabled={this.loading}>
+                                {app.translator.trans('nomiscz-auth-steam.forum.modals.unlink.buttons.cancel')}
+                            </Button>
                         </div>
                     </div>
                 </div>
@@ -68,18 +62,13 @@ export default class SteamUnlinkModal extends Modal {
             url: app.forum.attribute('apiUrl') + '/auth/steam/unlink',
             data: '',
         }).then(() => {
-            app.alerts.show(
-                alert = new Alert({
-                    type: 'success',
-                    children: app.translator.trans('nomiscz-auth-steam.forum.alerts.unlink_success'),
-                })
-            );
-            this.hide();
             app.session.user.savePreferences();
+            this.hide();
+            alert = app.alerts.show({type: 'success'}, app.translator.trans('nomiscz-auth-steam.forum.alerts.unlink_success'));
         });
 
         setTimeout(() => {
             app.alerts.dismiss(alert);
-        }, 8000);
+        }, 5000);
     }
 }

@@ -1,7 +1,4 @@
-import ForumApplication from 'flarum/ForumApplication'
-import Alert from 'flarum/components/Alert';
-
-export default class SteamApplication extends ForumApplication
+export default class SteamApplication
 {
     steamLinkComplete(returnCode) {
 
@@ -11,43 +8,23 @@ export default class SteamApplication extends ForumApplication
 
             case 'already_linked':
                 app.modal.close();
-                app.alerts.show(
-                    alert = new Alert({
-                        type: 'error',
-                        children: app.translator.trans('nomiscz-auth-steam.forum.alerts.already_linked'),
-                    })
-                );
+                alert = app.alerts.show({type: 'error'}, app.translator.trans('nomiscz-auth-steam.forum.alerts.already_linked'));
                 break;
             case 'already_used':
-                app.alerts.show(
-                    alert = new Alert({
-                        type: 'error',
-                        children: app.translator.trans('nomiscz-auth-steam.forum.alerts.already_used'),
-                    })
-                );
+                alert = app.alerts.show({type: 'error'}, app.translator.trans('nomiscz-auth-steam.forum.alerts.already_used'));
                 break;
             case 'done':
                 app.modal.close();
                 app.session.user.savePreferences();
-                app.alerts.show(
-                    alert = new Alert({
-                        type: 'success',
-                        children: app.translator.trans('nomiscz-auth-steam.forum.alerts.link_success'),
-                    })
-                );
+                alert = app.alerts.show({type: 'success'}, app.translator.trans('nomiscz-auth-steam.forum.alerts.link_success'));
                 break;
             case 'error':
-                app.alerts.show(
-                    alert = new Alert({
-                        type: 'error',
-                        children: app.translator.trans('nomiscz-auth-steam.forum.alerts.error'),
-                    })
-                );
+                alert = app.alerts.show({type: 'error'}, app.translator.trans('nomiscz-auth-steam.forum.alerts.error'));
                 break;
         }
 
         setTimeout(() => {
             app.alerts.dismiss(alert);
-        }, 8000);
+        }, 5000);
     }
 }

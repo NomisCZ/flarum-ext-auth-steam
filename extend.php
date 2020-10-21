@@ -17,8 +17,11 @@ use NomisCZ\SteamAuth\Api\Controllers\SteamUnlinkController;
 use NomisCZ\SteamAuth\Listeners\AddUserLoginProviderAttribute;
 use Flarum\Extend;
 use Illuminate\Contracts\Events\Dispatcher;
+use FoF\Components\Extend\AddFofComponents;
 
 return [
+    new AddFofComponents(),
+
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
         ->css(__DIR__.'/resources/less/forum.less'),

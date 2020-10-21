@@ -24,21 +24,19 @@ app.initializers.add('nomiscz-auth-steam', () => {
         } = app.session.user;
 
         items.add('linkSteam',
-            Button.component({
-                className: `Button SteamButton--${isLinked ? 'danger' : 'success'}`,
-                icon: 'fab fa-steam-symbol',
-                children: app.translator.trans(`nomiscz-auth-steam.forum.buttons.${isLinked ? 'unlink' : 'link'}`),
-                onclick: () => app.modal.show(isLinked ? new SteamUnlinkModal() : new SteamLinkModal())
-            })
+            <Button className={`Button SteamButton--${isLinked ? 'danger' : 'success'}`} icon={'fab fa-steam-symbol'}
+                         path={`/auth/${name}`} onclick={() => app.modal.show(isLinked ? SteamUnlinkModal : SteamLinkModal)}>
+                {app.translator.trans(`nomiscz-auth-steam.forum.buttons.${isLinked ? 'unlink' : 'link'}`)}
+            </Button>
         );
     });
 
     extend(LogInButtons.prototype, 'items', (items) => {
         items.add('steam',
             <LogInButton
-                className="Button LogInButton--steam"
-                icon="fab fa-steam-symbol"
-                path="/auth/steam">
+                className={'Button LogInButton--steam'}
+                icon={'fab fa-steam-symbol'}
+                path={'/auth/steam'}>
                 {app.translator.trans('nomiscz-auth-steam.forum.buttons.login')}
             </LogInButton>
         );
