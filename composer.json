@@ -3,12 +3,16 @@
   "description": "Allow users to log in with Steam",
   "keywords": [
     "flarum",
-    "authentication"
+    "authentication",
+    "steam"
   ],
   "type": "flarum-extension",
   "license": "MIT",
   "require": {
-    "flarum/core": "^0.1.0-beta.8"
+    "flarum/core": "^0.1.0-beta.14",
+    "guzzlehttp/guzzle": "^6.0 || ^7.0",
+    "laravel/helpers": "^v1.3.0",
+    "fof/components": ">=0.2.0"
   },
   "authors": [
     {
