@@ -25,4 +25,4 @@ nomiscz-auth-steam:
     settings:
       title: Configurações de Autenticação Steam
       api_key_label: API Key
-      use_steam_powered_domain: Use o domínio steampowered.com invés do steamcommunity.com (bloqueado na China)
+      endpoint: Endpoint de autenticação (o padrão é steamcommunity.com)

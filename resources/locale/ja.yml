@@ -25,4 +25,4 @@ nomiscz-auth-steam:
     settings:
       title: Steam ログイン - 設定
       api_key_label: steam API Key
-      use_steam_powered_domain: steamcommunity.com の代わりに steampowered.com ドメインを使用（後者は中国本土でブロックされています）
+      endpoint: 認証エンドポイント（デフォルトはsteamcommunity.com）

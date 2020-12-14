@@ -25,4 +25,4 @@ nomiscz-auth-steam:
     settings:
       title: steam登录设置
       api_key_label: steam密匙
-      use_steam_powered_domain: 使用steampowered.com域名而不是steamcommunity.com（在中國被禁止）
+      endpoint: 认证端点（默认steamcommunity.com）
