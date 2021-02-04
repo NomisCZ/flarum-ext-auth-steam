@@ -1,6 +1,6 @@
 export default class SteamApplication
 {
-    steamLinkComplete(returnCode) {
+    linkDone(returnCode) {
 
         let alert;
 

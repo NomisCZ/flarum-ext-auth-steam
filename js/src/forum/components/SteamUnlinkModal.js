@@ -60,7 +60,6 @@ export default class SteamUnlinkModal extends Modal {
         app.request({
             method: 'POST',
             url: app.forum.attribute('apiUrl') + '/auth/steam/unlink',
-            data: '',
         }).then(() => {
             app.session.user.savePreferences();
             this.hide();

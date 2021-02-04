@@ -1,6 +1,6 @@
 import app from 'flarum/app';
-import SteamSettingsModal from './components/SteamSettingsModal';
+import SteamSettingsPage from './components/SteamSettingsPage';
 
-app.initializers.add('nomiscz-auth-steam', () => {
-    app.extensionSettings['nomiscz-auth-steam'] = () => app.modal.show(SteamSettingsModal);
+app.initializers.add('nomiscz/flarum-ext-auth-steam', () => {
+    app.extensionData.for('nomiscz-auth-steam').registerPage(SteamSettingsPage);
 });

@@ -3,7 +3,7 @@
 /*
  * This file is part of nomiscz/flarum-ext-auth-steam.
  *
- * Copyright (c) 2019 NomisCZ.
+ * Copyright (c) 2021 NomisCZ.
  *
  * For the full copyright and license information, please view the LICENSE.md
  * file that was distributed with this source code.
@@ -35,7 +35,7 @@ class SteamAuthController implements RequestHandlerInterface
      * @return ResponseInterface
      * @throws Exception
      */
-    public function handle(Request $request) : ResponseInterface
+    public function handle(Request $request): ResponseInterface
     {
         $this->steam->setRequest($request);
 

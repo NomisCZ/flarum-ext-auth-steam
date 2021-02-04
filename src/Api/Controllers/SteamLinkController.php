@@ -3,7 +3,7 @@
 /*
  * This file is part of nomiscz/flarum-ext-auth-steam.
  *
- * Copyright (c) 2019 NomisCZ.
+ * Copyright (c) 2021 NomisCZ.
  *
  * For the full copyright and license information, please view the LICENSE.md
  * file that was distributed with this source code.
@@ -11,12 +11,12 @@
 
 namespace NomisCZ\SteamAuth\Api\Controllers;
 
+use Laminas\Diactoros\Response\HtmlResponse;
 use NomisCZ\SteamAuth\Flarum\Forum\Auth\NResponseFactory;
 use NomisCZ\SteamAuth\Providers\SteamAuth;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Zend\Diactoros\Response\HtmlResponse;
 use Flarum\User\LoginProvider;
 
 class SteamLinkController implements RequestHandlerInterface
@@ -65,14 +65,14 @@ class SteamLinkController implements RequestHandlerInterface
         return $this->steam->redirect();
     }
 
-    private function makeResponse($returnCode = 'done') : HtmlResponse
+    private function makeResponse($returnCode = 'done'): HtmlResponse
     {
-        $content = "<script>window.close();window.opener.app.steam.steamLinkComplete('{$returnCode}');</script>";
+        $content = "<script>window.close();window.opener.app.steam.linkDone('{$returnCode}');</script>";
 
         return new HtmlResponse($content);
     }
 
-    private function checkLoginProvider($identifier) : bool
+    private function checkLoginProvider($identifier): bool
     {
         return $this->loginProvider->where([
             ['provider', 'steam'],
