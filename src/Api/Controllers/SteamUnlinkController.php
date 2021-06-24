@@ -12,7 +12,7 @@
 namespace NomisCZ\SteamAuth\Api\Controllers;
 
 use Fig\Http\Message\StatusCodeInterface;
-use NomisCZ\SteamAuth\Flarum\Forum\Auth\NResponseFactory;
+use Flarum\Forum\Auth\ResponseFactory;
 use NomisCZ\SteamAuth\Providers\SteamAuth;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -24,7 +24,7 @@ class SteamUnlinkController implements RequestHandlerInterface
     protected $response;
     protected $steam;
 
-    public function __construct(NResponseFactory $response, SteamAuth $steam)
+    public function __construct(ResponseFactory $response, SteamAuth $steam)
     {
         $this->response = $response;
         $this->steam = $steam;
