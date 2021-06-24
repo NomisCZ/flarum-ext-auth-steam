@@ -17,7 +17,7 @@ use NomisCZ\SteamAuth\Providers\SteamAuth;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Zend\Diactoros\Response\EmptyResponse;
+use Laminas\Diactoros\Response\EmptyResponse;
 
 class SteamUnlinkController implements RequestHandlerInterface
 {
@@ -35,11 +35,12 @@ class SteamUnlinkController implements RequestHandlerInterface
         $actor = $request->getAttribute('actor');
         $actorLoginProviders = $actor->loginProviders()->where('provider', 'steam')->first();
 
-        if ($actorLoginProviders) {
-            $actorLoginProviders->delete();
-            return new EmptyResponse(StatusCodeInterface::STATUS_OK);
+        if (!$actorLoginProviders) {
+            return new EmptyResponse(StatusCodeInterface::STATUS_BAD_REQUEST);
         }
 
-        return new EmptyResponse(StatusCodeInterface::STATUS_BAD_REQUEST);
+        $actorLoginProviders->delete();
+
+        return new EmptyResponse(StatusCodeInterface::STATUS_OK);
     }
 }
