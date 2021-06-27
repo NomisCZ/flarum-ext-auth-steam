@@ -23,14 +23,14 @@ export default class SteamSettingsPage extends ExtensionPage  {
                         >
                             {app.translator.trans(`nomiscz-auth-steam.admin.settings.api_key_label`)}
                         </StringItem>
-                    </div>,
+                    </div>
                     <div className="Form-group">
                         <BooleanItem name={'flarum-ext-auth-steam.use_steam_powered_domain'} setting={this.setting}>
                             <span>{app.translator.trans('nomiscz-auth-steam.admin.settings.use_steam_powered_domain')}</span>
                         </BooleanItem>
                     </div>
                     {this.submitButton()}
-                </div>,
+                </div>
             </div>
         ];
     }
