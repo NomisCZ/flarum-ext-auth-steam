@@ -16,8 +16,9 @@ use Illuminate\Support\Fluent;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use GuzzleHttp\Client as GuzzleClient;
-use Zend\Diactoros\Response\RedirectResponse;
-use Zend\Diactoros\Uri;
+use GuzzleHttp\Psr7\Uri;
+use Illuminate\Support\Arr;
+use Laminas\Diactoros\Response\RedirectResponse;
 
 /**
  * Class SteamAuth
@@ -114,7 +115,7 @@ class SteamAuth implements SteamAuthInterface
      * Set request
      * @param Request $request
      */
-    public function setRequest(Request $request) : void
+    public function setRequest(Request $request): void
     {
         $this->request = $request;
         $this->authUrl = $this->buildUrl();
@@ -125,7 +126,7 @@ class SteamAuth implements SteamAuthInterface
      * @return bool
      * @throws Exception
      */
-    public function validate() : bool
+    public function validate(): bool
     {
         if (!$this->request) {
             throw new Exception("Missing request, please use setRequest to specify it.");
@@ -136,7 +137,7 @@ class SteamAuth implements SteamAuthInterface
         }
 
         $requestOptions = $this->getDefaultRequestOptions();
-        $response = $this->guzzleClient->request('POST', $this->getOpenIdUrl().'/login', $requestOptions);
+        $response = $this->guzzleClient->request('POST', $this->getOpenIdUrl() . '/login', $requestOptions);
 
         $this->parseSteamID();
         $this->parseInfo();
@@ -149,7 +150,7 @@ class SteamAuth implements SteamAuthInterface
      * @param $results
      * @return Fluent
      */
-    public function parseResults($results) : Fluent
+    public function parseResults($results): Fluent
     {
         $parsed = [];
         $lines = explode("\n", $results);
@@ -170,7 +171,7 @@ class SteamAuth implements SteamAuthInterface
      * Return the redirect response to login
      * @return RedirectResponse
      */
-    public function redirect() : RedirectResponse
+    public function redirect(): RedirectResponse
     {
         return new RedirectResponse($this->authUrl);
     }
@@ -179,7 +180,7 @@ class SteamAuth implements SteamAuthInterface
      * Returns the Steam User info
      * @return Fluent
      */
-    public function getUserInfo() : Fluent
+    public function getUserInfo(): Fluent
     {
         return $this->steamInfo;
     }
@@ -188,7 +189,7 @@ class SteamAuth implements SteamAuthInterface
      * Returns the Steam Id
      * @return string
      */
-    public function getSteamId() : string
+    public function getSteamId(): string
     {
         return $this->steamId;
     }
@@ -202,18 +203,18 @@ class SteamAuth implements SteamAuthInterface
         $queryParams = $this->request->getQueryParams();
 
         $params = [
-            'openid.assoc_handle' => array_get($queryParams,self::OPENID_ASSOC_HANDLE),
-            'openid.signed'       => array_get($queryParams,self::OPENID_SIGNED),
-            'openid.sig'          => array_get($queryParams,self::OPENID_SIG),
+            'openid.assoc_handle' => Arr::get($queryParams, self::OPENID_ASSOC_HANDLE),
+            'openid.signed'       => Arr::get($queryParams, self::OPENID_SIGNED),
+            'openid.sig'          => Arr::get($queryParams, self::OPENID_SIG),
             'openid.ns'           => self::OPENID_NS,
             'openid.mode'         => 'check_authentication',
         ];
 
-        $signedParams = explode(',', array_get($queryParams,self::OPENID_SIGNED));
+        $signedParams = explode(',', Arr::get($queryParams, self::OPENID_SIGNED));
 
         foreach ($signedParams as $item) {
-            $value = array_get($queryParams,'openid_'.str_replace('.', '_', $item));
-            $params['openid.'.$item] = $value;
+            $value = Arr::get($queryParams, 'openid_' . str_replace('.', '_', $item));
+            $params['openid.' . $item] = $value;
         }
 
         return $params;
@@ -223,20 +224,18 @@ class SteamAuth implements SteamAuthInterface
      * Validates if the request object has required stream attributes
      * @return bool
      */
-    private function requestIsValid() : bool
+    private function requestIsValid(): bool
     {
         $queryParams = $this->request->getQueryParams();
 
-        return array_has($queryParams,self::OPENID_ASSOC_HANDLE)
-            && array_has($queryParams,self::OPENID_SIGNED)
-            && array_has($queryParams,self::OPENID_SIG);
+        return Arr::has($queryParams, [self::OPENID_ASSOC_HANDLE, self::OPENID_SIGNED, self::OPENID_SIG]);
     }
 
     /**
      * Build the Steam login URL.
      * @return string
      */
-    private function buildUrl() : string
+    private function buildUrl(): string
     {
         $redirectUri = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $params = http_build_query([
@@ -248,13 +247,13 @@ class SteamAuth implements SteamAuthInterface
             'openid.claimed_id' => 'http://specs.openid.net/auth/2.0/identifier_select',
         ]);
 
-        return (string) (new Uri($this->getOpenIdUrl().'/login'))->withQuery($params);
+        return (string) (new Uri($this->getOpenIdUrl() . '/login'))->withQuery($params);
     }
 
     /**
      * @return array
      */
-    private function getDefaultRequestOptions() : array
+    private function getDefaultRequestOptions(): array
     {
         return [
             'form_params' => $this->getParams(),
@@ -264,10 +263,10 @@ class SteamAuth implements SteamAuthInterface
     /**
      *  Parse the steamID from the OpenID response
      */
-    private function parseSteamID() : void
+    private function parseSteamID(): void
     {
         $queryParams = $this->request->getQueryParams();
-        preg_match('#^https?://'.$this->getOpenIdUrl(false).'/id/([0-9]{17,25})#', array_get($queryParams,'openid_claimed_id'), $matches);
+        preg_match('#^https?://' . $this->getOpenIdUrl(false) . '/id/([0-9]{17,25})#', Arr::get($queryParams, 'openid_claimed_id'), $matches);
         $this->steamId = is_numeric($matches[1]) ? $matches[1] : 0;
     }
 
@@ -275,7 +274,7 @@ class SteamAuth implements SteamAuthInterface
      * Get user data from Steam API
      * @throws Exception
      */
-    private function parseInfo() : void
+    private function parseInfo(): void
     {
         if (!$this->steamId) {
             return;
@@ -295,15 +294,15 @@ class SteamAuth implements SteamAuthInterface
      * @param bool $withProtocol
      * @return string
      */
-    private function getOpenIdUrl($withProtocol = true) : string
+    private function getOpenIdUrl($withProtocol = true): string
     {
-       return str_replace($withProtocol ? '{DOMAIN}' : 'https://{DOMAIN}', $this->getOpenIdDomain(), self::OPENID_URL);
+        return str_replace($withProtocol ? '{DOMAIN}' : 'https://{DOMAIN}', $this->getOpenIdDomain(), self::OPENID_URL);
     }
 
     /**
      * Get OpenID API DOMAIN depending on setting value
      */
-    private function getOpenIdDomain() : string
+    private function getOpenIdDomain(): string
     {
         return self::OPENID_DOMAINS[$this->useSteamPoweredDomain];
     }
