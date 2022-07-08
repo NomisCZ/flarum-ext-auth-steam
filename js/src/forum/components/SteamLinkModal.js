@@ -1,5 +1,6 @@
-import Modal from 'flarum/components/Modal';
-import Button from 'flarum/components/Button';
+import app from 'flarum/forum/app';
+import Modal from 'flarum/components/common/Modal';
+import Button from 'flarum/components/common/Button';
 
 export default class SteamLinkModal extends Modal {
   className() {

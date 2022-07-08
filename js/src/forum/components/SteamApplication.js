@@ -1,3 +1,5 @@
+import app from 'flarum/forum/app';
+
 export default class SteamApplication {
   linkDone(returnCode) {
     let alert;
