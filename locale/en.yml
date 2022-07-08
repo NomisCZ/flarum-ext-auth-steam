@@ -25,4 +25,5 @@ nomiscz-auth-steam:
     settings:
       title: Steam Auth Settings
       api_key_label: API Key
+      api_key_help: Get your API Key from {link}
       use_steam_powered_domain: Use steampowered.com domain instead of steamcommunity.com (blocked in China)

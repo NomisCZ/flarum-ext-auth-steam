@@ -16,20 +16,16 @@ use NomisCZ\SteamAuth\Http\Controllers\SteamAuthController;
 use NomisCZ\SteamAuth\Api\Controllers\SteamLinkController;
 use NomisCZ\SteamAuth\Api\Controllers\SteamUnlinkController;
 use Flarum\Extend;
-use FoF\Components\Extend\AddFofComponents;
 
 return [
-    new AddFofComponents(),
-
     (new Extend\Frontend('forum'))
-        ->js(__DIR__.'/js/dist/forum.js')
-        ->css(__DIR__.'/resources/less/forum.less'),
+        ->js(__DIR__ . '/js/dist/forum.js')
+        ->css(__DIR__ . '/less/forum.less'),
 
     (new Extend\Frontend('admin'))
-        ->js(__DIR__.'/js/dist/admin.js')
-        ->css(__DIR__.'/resources/less/admin.less'),
+        ->js(__DIR__ . '/js/dist/admin.js'),
 
-    new Extend\Locales(__DIR__ . '/resources/locale'),
+    new Extend\Locales(__DIR__ . '/locale'),
 
     (new Extend\Routes('forum'))
         ->get('/auth/steam', 'auth.steam', SteamAuthController::class),
@@ -39,7 +35,7 @@ return [
         ->post('/auth/steam/unlink', 'auth.steam.api.unlink', SteamUnlinkController::class),
 
     (new Extend\ApiSerializer(UserSerializer::class))
-        ->attributes(function($serializer, $user, $attributes) {
+        ->attributes(function ($serializer, $user, $attributes) {
 
             $loginProviders = $user->loginProviders();
             $steamProvider = $loginProviders->where('provider', 'steam')->first();

@@ -1,17 +1,20 @@
 {
-  "name": "@nomiscz/flarum-ext-auth-steam",
-  "version": "0.0.0",
-  "private": true,
-  "dependencies": {
-    "flarum-webpack-config": "^0.1.0-beta.10",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
-  },
-  "scripts": {
-    "dev": "webpack --mode development --watch",
-    "build": "webpack --mode production"
-  },
-  "devDependencies": {
-    "flarum": "github:flarum/types#v1"
-  }
+    "name": "@nomiscz/flarum-ext-auth-steam",
+    "private": true,
+    "version": "0.0.0",
+    "devDependencies": {
+        "flarum-webpack-config": "^2.0.0",
+        "webpack": "^5.65.0",
+        "webpack-cli": "^4.9.1",
+        "prettier": "^2.5.1",
+        "@flarum/prettier-config": "^1.0.0"
+    },
+    "scripts": {
+        "dev": "webpack --mode development --watch",
+        "build": "webpack --mode production",
+        "analyze": "cross-env ANALYZER=true npm run build",
+        "format": "prettier --write src",
+        "format-check": "prettier --check src"
+    },
+    "prettier": "@flarum/prettier-config"
 }
