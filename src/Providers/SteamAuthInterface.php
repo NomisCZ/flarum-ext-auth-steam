@@ -13,7 +13,7 @@ namespace NomisCZ\SteamAuth\Providers;
 
 use Illuminate\Support\Fluent;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Zend\Diactoros\Response\RedirectResponse;
+use Laminas\Diactoros\Response\RedirectResponse;
 
 /**
  * Class SteamAuth
