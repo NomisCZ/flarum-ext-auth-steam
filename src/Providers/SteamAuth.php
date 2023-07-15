@@ -16,8 +16,8 @@ use Illuminate\Support\Fluent;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use GuzzleHttp\Client as GuzzleClient;
-use Zend\Diactoros\Response\RedirectResponse;
-use Zend\Diactoros\Uri;
+use Laminas\Diactoros\Response\RedirectResponse;
+use Laminas\Diactoros\Uri;
 
 /**
  * Class SteamAuth
